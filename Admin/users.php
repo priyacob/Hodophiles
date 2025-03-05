@@ -93,7 +93,12 @@
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Phone</th>
-                                <th>Role</th>
+                                <th>address</th>
+                                <th>city</th>
+                                <th>county</th>
+                                <th>DOB</th>
+                                <th>gender</th>
+                                
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -103,7 +108,13 @@
                                 <td>John Doe</td>
                                 <td>johndoe@example.com</td>
                                 <td>+1234567890</td>
-                                <td>Admin</td>
+                                <td>apdj</td>
+                                <td>apd</td>
+                                <td>india</td>
+                                <td>10/10/2002</td>
+                                <td>male</td>
+                                
+                            
                                 <td>
                                     <button class="btn btn-warning btn-sm"><i class="fas fa-edit"></i> Edit</button>
                                     <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> Delete</button>

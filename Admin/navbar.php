@@ -1,143 +1,140 @@
 <?php
-// Navbar and sidebar structure
+// Updated Navbar for Admin Dashboard
 ?>
-<div id="wrapper">
-    <div id="sidebar-wrapper">
-        <div class="sidebar-heading">Admin Panel</div>
-        <div class="list-group list-group-flush">
-            <a href="dashboard.php" class="list-group-item list-group-item-action"><i class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
-            <a href="bookings.php" class="list-group-item list-group-item-action"><i class="fas fa-calendar-check me-2"></i>Bookings</a>
-            <a href="tours.php" class="list-group-item list-group-item-action"><i class="fas fa-map-marked-alt me-2"></i>Tours</a>
-            <a href="users.php" class="list-group-item list-group-item-action"><i class="fas fa-users me-2"></i>Users</a>
-            <a href="reviews.php" class="list-group-item list-group-item-action"><i class="fas fa-star me-2"></i>Reviews</a>
-            <a href="payments.php" class="list-group-item list-group-item-action"><i class="fas fa-money-bill-wave me-2"></i>Payments</a>
-            <a href="settings.php" class="list-group-item list-group-item-action"><i class="fas fa-cog me-2"></i>Settings</a>
-            <a href="logout.php" class="list-group-item list-group-item-action"><i class="fas fa-sign-out-alt me-2"></i>Logout</a>
-        </div>
-    </div>
 
-    <div id="page-content-wrapper">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
-                <button class="btn btn-primary" id="menu-toggle"><i class="fas fa-bars"></i></button>
-                <h3 class="ms-3">Admin Dashboard</h3>
-                <div class="ms-auto d-flex align-items-center">
-                    <span class="me-3">Welcome, Admin</span>
-                    <button class="btn btn-danger btn-sm"><i class="fas fa-sign-out-alt"></i> Logout</button>
-                </div>
-            </div>
-        </nav>
-
-        <script>
-            document.getElementById("menu-toggle").addEventListener("click", function () {
-                document.getElementById("wrapper").classList.toggle("toggled");
-            });
-        </script>
-
-
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel</title>
+    <title>Admin Dashboard Navbar</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-        }
-        #wrapper {
-            display: flex;
-        }
-        #sidebar-wrapper {
-            min-height: 100vh;
-            width: 250px;
-            background-color: #343a40;
-            color: #fff;
-            position: fixed;
-            transition: all 0.3s ease;
-        }
-        .sidebar-heading {
-            text-align: center;
-            font-size: 1.2rem;
-            padding: 1rem;
+        .navbar-brand {
             font-weight: bold;
+            font-size: 1.5rem;
         }
-        .list-group-item {
-            background-color: transparent;
-            border: none;
-            color: #fff;
-            padding: 12px 20px;
+        .nav-link {
+            font-weight: 500;
         }
-        .list-group-item:hover {
-            background-color: #495057;
-        }
-        #page-content-wrapper {
-            width: 100%;
-            padding-left: 250px;
-            transition: all 0.3s ease;
-        }
-        .toggled #sidebar-wrapper {
-            margin-left: -250px;
-        }
-        .toggled #page-content-wrapper {
-            padding-left: 0;
-        }
-        @media (max-width: 768px) {
-            #sidebar-wrapper {
-                margin-left: -250px;
-            }
-            #page-content-wrapper {
-                padding-left: 0;
-            }
-            .toggled #sidebar-wrapper {
-                margin-left: 0;
-            }
-            .toggled #page-content-wrapper {
-                padding-left: 250px;
-            }
+        .dropdown-menu {
+            min-width: 200px;
         }
     </style>
 </head>
 <body>
-    <div id="wrapper">
-        <div id="sidebar-wrapper">
-            <div class="sidebar-heading">Admin Panel</div>
-            <div class="list-group list-group-flush">
-                <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
-                <a href="#bookings" class="list-group-item list-group-item-action"><i class="fas fa-calendar-check me-2"></i>Bookings</a>
-                <a href="#tours" class="list-group-item list-group-item-action"><i class="fas fa-map-marked-alt me-2"></i>Tours</a>
-                <a href="users.php" class="list-group-item list-group-item-action"><i class="fas fa-users me-2"></i>Users</a>
-                <a href="#reviews" class="list-group-item list-group-item-action"><i class="fas fa-star me-2"></i>Reviews</a>
-                <a href="#payments" class="list-group-item list-group-item-action"><i class="fas fa-money-bill-wave me-2"></i>Payments</a>
-                <a href="#settings" class="list-group-item list-group-item-action"><i class="fas fa-cog me-2"></i>Settings</a>
-                <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-sign-out-alt me-2"></i>Logout</a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Admin Dashboard</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Bookings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Tours</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Users</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Reports</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user-circle"></i> Admin
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li><a class="dropdown-item" href="#">Settings</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
         </div>
+    </nav>
 
-        <div id="page-content-wrapper">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container-fluid">
-                    <button class="btn btn-primary" id="menu-toggle"><i class="fas fa-bars"></i></button>
-                    <h3 class="ms-3">Admin Dashboard</h3>
-                    <div class="ms-auto d-flex align-items-center">
-                        <span class="me-3">Welcome, Admin</span>
-                        <button class="btn btn-danger btn-sm"><i class="fas fa-sign-out-alt"></i> Logout</button>
-                    </div>
-                </div>
-            </nav>
-            <div class="container mt-4">
-                <h2>Dashboard Content</h2>
-                <p>This is where your main content goes.</p>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        document.getElementById("menu-toggle").addEventListener("click", function () {
-            document.getElementById("wrapper").classList.toggle("toggled");
-        });
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-</html> -->
+</html>
+<?php
+// Updated Navbar for Admin Dashboard
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard Navbar</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        .nav-link {
+            font-weight: 500;
+        }
+        .dropdown-menu {
+            min-width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Admin Dashboard</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Bookings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Tours</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Users</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Reports</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user-circle"></i> Admin
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li><a class="dropdown-item" href="#">Settings</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
