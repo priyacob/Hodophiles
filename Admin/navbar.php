@@ -26,26 +26,30 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Admin Dashboard</a>
+            <a  class="navbar-brand" href="dashboard.php">Admin sgsgDashboard</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a href="index.php" class="nav-link active" aria-current="page">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Bookings</a>
+                        <a href="bookings.php" class="nav-link">Bookings</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Tours</a>
+                        <a class="nav-link" href="tours.php">Tours</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Users</a>
+                        <a class="nav-link" href="packages.php">Packages</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Reports</a>
+                        <a href="users.php" class="nav-link" href="users.php">Users</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="reports.php">Reports</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ms-auto">
@@ -54,10 +58,10 @@
                             <i class="fas fa-user-circle"></i> Admin
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Profile</a></li>
-                            <li><a class="dropdown-item" href="#">Settings</a></li>
+                            <li><a class="dropdown-item" href="admin_profile.php">Profile</a></li>
+                            <li><a class="dropdown-item" href="sttings.php">Settings</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Logout</a></li>
+                            <li><a class="dropdown-item" href="logout.php">Logout</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -96,26 +100,32 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Admin Dashboard</a>
+            <a class="navbar-brand" href="dashboard.php">Admin Dashboard</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="index.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Bookings</a>
+                        <a class="nav-link" href="bookings.php">Bookings</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Tours</a>
+                        <a class="nav-link" href="tours.php">Tours</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Users</a>
+                        <a class="nav-link" href="packages.php">Packages</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Reports</a>
+                        <a class="nav-link" href="users.php">Users</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="tour_guide.php" class="nav-link" >Guider</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="reports.php">Reports</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ms-auto">
