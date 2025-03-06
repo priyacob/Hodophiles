@@ -63,68 +63,71 @@ $res = mysqli_query($con, $sql);
             <div class="col-lg-9">
                 <div class="row">
                 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
+// Database Connection
+$host = "localhost"; // Change if needed
+$user = "root"; // Your database username
+$password = ""; // Your database password
 $database = "soundarja"; // Your database name
 
-$conn = new mysqli($servername, $username, $password, $database);
+$conn = mysqli_connect($host, $user, $password, $database);
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+// Check Connection
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
 }
 
-// Fetch data
+// Fetch Data from Database
 $sql = "SELECT * FROM hotel";
-$result = $conn->query($sql);
+$res = mysqli_query($conn, $sql);
+?>
 
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        ?>
-       <div class="col-md-4 ftco-animate" onclick="window.location.href='destination-details.php?id=<?php echo $row['id']; ?>'" style="cursor: pointer;">
-	   <!-- <div class="col-md-4 ftco-animate"> -->
-    <div class="destination">
-        <a href="destination-details.php?id=<?php echo $row['hotel_id']; ?>" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url('<?php echo $row['image_url']; ?>');">
-            <div class="icon d-flex justify-content-center align-items-center">
-                <span class="icon-search2"></span>
-            </div>
-        </a>
-        <div class="text p-3">
-            <h3><a href="destination-details.php?id=<?php echo $row['hoid']; ?>"><?php echo $row['name']; ?></a></h3>
-            <p class="rate">
-                <i class="icon-star"></i>
-                <i class="icon-star"></i>
-                <i class="icon-star"></i>
-                <i class="icon-star"></i>
-                <i class="icon-star-o"></i>
-                <span>8 Rating</span>
-            </p>
-            <div class="d-flex">
-                <div class="one">
-                    <span class="price">₹<?php echo $row['price']; ?></span>
+<div class="row">
+    <?php while ($row = mysqli_fetch_assoc($res)) { ?>
+        <div class="col-md-4 ftco-animate">
+            <div class="destination">
+                <a href="hotel-single.php?id=<?php echo $row['hotel_id']; ?>" 
+                   class="img img-2 d-flex justify-content-center align-items-center"
+                   style="background-image: url('<?php echo $row['image_url']; ?>');">
+                    <div class="icon d-flex justify-content-center align-items-center">
+                        <span class="icon-search2"></span>
+                    </div>
+                </a>
+                <div class="text p-3">
+                    <div class="d-flex">
+                        <div class="one">
+                            <h3><a href="hotel-single.php?id=<?php echo $row['hotel_id']; ?>">
+                                <?php echo $row['hotel_name']; ?>
+                            </a></h3>
+                            <p class="rate">
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
+                                <i class="icon-star-o"></i>
+                                <span>8 Rating</span>
+                            </p>
+                        </div>
+                        <div class="two">
+                            <span class="price per-price">₹<?php echo $row['price']; ?><br><small>/night</small></span>
+                        </div>
+                    </div>
+                    <p><?php echo $row['description']; ?></p>
+                    <hr>
+                    <p class="bottom-area d-flex">
+                        <span><i class="icon-map-o"></i> <?php echo $row['place']; ?></span>
+                        <span class="ml-auto"><a href="booking.php?hotel_id=<?php echo $row['hotel_id']; ?>">Book Now</a></span>
+                    </p>
                 </div>
             </div>
-            <p><?php echo substr($row['overview'], 0, 80); ?>...</p>
-            <p class="days"><span><?php echo $row['duration']; ?></span></p>
-            <hr>
-            <p class="bottom-area d-flex">
-                <span><i class="icon-map-o"></i> <?php echo $row['places_to_visit']; ?></span> 
-                <span class="ml-auto"><a href="destination-details.php?id=<?php echo $row['id']; ?>">Discover</a></span>
-            </p>
         </div>
-    </div>
+    <?php } ?>
 </div>
 
-        <!-- </div> -->
-        <?php
-    }
-} else {
-    echo "No destinations found.";
-}
-
-$conn->close();
+<?php
+// Close connection
+mysqli_close($conn);
 ?>
+
                 </div>
             </div>
         </div>
