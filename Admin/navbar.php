@@ -26,7 +26,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Admin Dashboard</a>
+            <a  class="navbar-brand" href="dashboard.php">Admin sgsgDashboard</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -36,16 +36,16 @@
                         <a class="nav-link active" aria-current="page" href="index.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Bookings</a>
+                        <a class="nav-link" href="packages.php">Packages</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Tours</a>
+                        <a class="nav-link" href="users.php">Users</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Users</a>
+                        <a href="tour_guide.php" class="nav-link" >Guider</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Reports</a>
+                        <a class="nav-link" href="reports.php">Reports</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ms-auto">
