@@ -24,6 +24,7 @@ $result = $stmt ->get_result();
 <body>
 
     <div class="container mt-5">
+    
         <h3><i class="fas fa-users"></i> Manage Users</h3>
       <div class="d-flex flex-row"><a href="add_user.php"><button type="btn" class="btn btn-success d-flex-row">Add User</button></a></div>
             <a href="users.php" class="btn btn-secondary">Cancel</a>
@@ -73,6 +74,4 @@ $result = $stmt ->get_result();
             </tbody>
         </table>
     </div>
-
-</body>
-</html>
+    <?php include 'sidebar.php'?>
