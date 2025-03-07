@@ -1,5 +1,5 @@
 <?php
-// Navbar and sidebar structure
+
 ?>
 <div id="wrapper">
     <div id="sidebar-wrapper">
