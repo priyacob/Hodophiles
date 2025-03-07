@@ -2,49 +2,88 @@
 include 'navbar.php';
 include 'connect.php';
 
-
-// Fetch restaurants from the database
-$query = "SELECT * FROM `restaurants` WHERE `status`='active'";
-$result = mysqli_query($con, $query);
+// Fetch all restaurants
+$query = "SELECT * FROM restaurants ORDER BY created_at DESC";
+$result = $con->query($query);
 ?>
 
-<!-- Food Section -->
-<section class="food py-5 bg-light text-center" id="food">
-    <div class="container">
-        <h1 class="heading text-uppercase fw-bold mb-4">Our Special Foods</h1>
-        <div class="swiper food-slider">
-            <div class="swiper-wrapper row">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Restaurants</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Full Card Hover Effect */
+        .restaurant-card {
+            overflow: hidden;
+            border-radius: 10px;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
 
-                <?php
-                while ($row = mysqli_fetch_assoc($result)) {
-                ?>
-                    <div class="swiper-slide slide col-md-4 mb-4">
-                        <div class="card border-0 shadow-lg">
-                            <div class="position-relative">
-                                <img src="images/<?php echo $row['image']; ?>" class="card-img-top img-fluid" alt="<?php echo $row['name']; ?>">
-                                <a href="#" class="fas fa-shopping-cart position-absolute bottom-0 end-0 p-3 text-danger"></a>
-                            </div>
-                            <div class="card-body">
-                                <h3 class="card-title fw-bold"><?php echo $row['name']; ?></h3>
-                                <p class="card-text text-muted"><?php echo $row['cuisine_type']; ?></p>
-                                <h4 class="fw-bold text-danger">$<?php echo $row['average_cost']; ?></h4>
-                                <a href="#" class="btn btn-danger">Order Now</a>
-                            </div>
+        /* Hover Effect - Scale up & Add Shadow */
+        .restaurant-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Image Inside the Card */
+        .restaurant-card img {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        /* Image Zooms Slightly on Hover */
+        .restaurant-card:hover img {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+
+<section class="container mt-5">
+    <h1 class="text-center mb-4">Restaurant Listings</h1>
+
+    <?php if ($result->num_rows > 0) { ?>
+        <div class="row">
+            <?php while ($row = $result->fetch_assoc()) { ?>
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm restaurant-card">
+                    <img src="images/<?php echo htmlspecialchars($row['image']); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($row['name']); ?>" style="height: 200px; object-fit: cover;">
+                    <div class="card-body text-center">
+                        <h5 class="card-title"><?php echo htmlspecialchars($row['name']); ?></h5>
+                        <p class="card-text"><strong>Address:</strong> <?php echo htmlspecialchars($row['address'] . ', ' . $row['city']); ?></p>
+                        <p class="card-text"><strong>Cuisine:</strong> <?php echo htmlspecialchars($row['cuisine_type']); ?></p>
+                        <p class="card-text"><strong>Rating:</strong> <?php echo htmlspecialchars($row['rating']); ?> ⭐</p>
+                        <div class="d-flex justify-content-between">
+                            <a href="restaurant.php?id=<?php echo $row['r_id']; ?>" class="btn btn-outline-primary">View Details</a>
+                            <a href="orders.php?restaurant_id=<?php echo $row['r_id']; ?>" class="btn btn-outline-warning">Order Now</a>
                         </div>
                     </div>
-                <?php
-                }
-                ?>
-
+                </div>
             </div>
-            <div class="swiper-pagination mt-3"></div>
+            <?php } ?>
         </div>
-    </div>
+    <?php } else { ?>
+        <p class="text-center text-danger">No restaurants available.</p>
+    <?php } ?>
+
 </section>
 
+</body>
+</html>
 
 
-<!-- <section class="food py-5 bg-light text-center" id="food">
+
+
+
+
+
+
+
+<!-- 
+<section class="food py-5 bg-light text-center" id="food">
     <div class="container">
         <h1 class="heading text-uppercase fw-bold mb-4">Our Special Foods</h1>
         <div class="swiper food-slider">
@@ -196,6 +235,6 @@ $result = mysqli_query($con, $query);
 
 
     </div>
-</section> -->
+</section>
 
-
+ -->
