@@ -25,16 +25,10 @@ if (isset($_GET['id'])) {
 
 $con->close();
 ?> 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $row['name']; ?> - Details</title>
-      <!-- Google Fonts -->
+ 
       <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <!-- Bootstrap CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap CSS  -->
+ <!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> -->
 <!-- Bootstrap Icons -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
 
@@ -45,14 +39,19 @@ $con->close();
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 
-    <style>
-        
-    </style>
-    <style>
-       
-    </style>
-</head>
-<body>
+
+<div class="hero-wrap js-fullheight" style="background-image: url('images/bg_3.jpg');">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
+          <div class="col-md-9 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
+            <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><a href="index.html">Home</a></span> <span>Tour</span></p>
+            <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Destination</h1>
+          </div>
+        </div>
+      </div>
+    </div> 
+</div>
 
 <div class="containers mt-4">
     <!-- Left Content -->
@@ -181,10 +180,14 @@ $(document).ready(function() {
   });
 </script>
 
-</body>
-</html>
 
 
 
 
 
+
+<style>
+    a{
+        color:black;
+    }
+</style>
