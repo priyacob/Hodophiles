@@ -85,7 +85,7 @@ $res = mysqli_query($conn, $sql);
     <?php while ($row = mysqli_fetch_assoc($res)) { ?>
         <div class="col-md-4 ftco-animate">
             <div class="destination">
-                <a href="hotel-single.php?id=<?php echo $row['hotel_id']; ?>" 
+                <a href="hotel-single.php?hotel_id=<?php echo $row['hotel_id']; ?>" 
                    class="img img-2 d-flex justify-content-center align-items-center"
                    style="background-image: url('<?php echo $row['image_url']; ?>');">
                     <div class="icon d-flex justify-content-center align-items-center">
