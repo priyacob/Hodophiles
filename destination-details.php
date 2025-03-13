@@ -46,7 +46,34 @@ $con->close();
 
 
     <style>
-        
+        .overview-box {
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.overview-box h3, 
+.overview-box h5 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.overview-box ul {
+    padding-left: 0;
+}
+
+.overview-box ul li {
+    list-style: none;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.overview-box p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
     </style>
     <style>
        
@@ -86,13 +113,40 @@ $con->close();
             <button class="tab-btn" data-target="itinerary">Day-wise Itinerary</button>
             <button class="tab-btn" data-target="inclusions">Inclusions/Exclusions</button>
             <button class="tab-btn" data-target="info">Additional Info</button>
-        </div>
-
+        </div> 
+        
         <!-- Tab Content -->
-        <div class="tab-content active" id="overview">
-            <h3>Package Overview</h3>
-            <p><?php echo $destination['overview']; ?></p>
-        </div>
+        <div class="overview-box card p-4 shadow-sm">
+    <h3 class="fw-bold">Package Overview</h3>
+    
+    <p><?php echo $destination['overview']; ?></p>
+
+    <div class="highlights mt-3">
+        <h5 class="fw-bold"><i class="bi bi-stars"></i> Key Highlights:</h5>
+        <ul class="list-unstyled">
+            <li><i class="bi bi-check-circle-fill text-success"></i> Scenic sightseeing and adventure activities</li>
+            <li><i class="bi bi-check-circle-fill text-success"></i> Stay in premium hotels and resorts</li>
+            <li><i class="bi bi-check-circle-fill text-success"></i> Guided city tours and cultural experiences</li>
+            <li><i class="bi bi-check-circle-fill text-success"></i> Comfortable transportation and transfers</li>
+        </ul>
+    </div>
+
+    <div class="best-time mt-3">
+        <h5 class="fw-bold"><i class="bi bi-calendar-event"></i> Best Time to Visit:</h5>
+        <p><?php echo $destination['best_time']; ?></p>
+    </div>
+
+    <div class="activities mt-3">
+        <h5 class="fw-bold"><i class="bi bi-activity"></i> Activities & Experiences:</h5>
+        <p><?php echo $destination['activities']; ?></p>
+    </div>
+
+    <div class="tour-type mt-3">
+        <h5 class="fw-bold"><i class="bi bi-people-fill"></i> Who is this tour for?</h5>
+        <p><?php echo $destination['tour_type']; ?></p>
+    </div>
+</div>
+
 
         <div class="tab-content" id="itinerary">
             <h3>Day-wise Itinerary</h3>

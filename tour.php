@@ -206,5 +206,11 @@ $conn->close();
 <script src="js/google-map.js"></script>
 <script src="js/main.js"></script>
 </body>
+<script>
+	$(document).ready(function () {
+    $("#checkin_date").datepicker({ dateFormat: "yy-mm-dd" });
+    $("#checkout_date").datepicker({ dateFormat: "yy-mm-dd" });
+});
 
+</script>
 </html>
