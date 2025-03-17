@@ -9,8 +9,16 @@ $sqls = "SELECT * FROM destinations";
 $ress = mysqli_query($con, $sqls);
 
 if (!$ress) {
-    die("Query Failed: " . mysqli_error($con));
+	die("Query Failed: " . mysqli_error($con));
 }
+$keyword = '';
+$package_id = '';
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $keyword = $con->real_escape_string(trim($_POST['keyword']));
+    $package_id = $con->real_escape_string(trim($_POST['package_id']));
+}
+
+
 ?>
 <!-- END nav -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
@@ -22,24 +30,29 @@ if (!$ress) {
 				<h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><strong>Explore <br></strong> your amazing city</h1>
 				<p data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Find great places to stay, eat, shop, or visit from local experts</p>
 				<div class="block-17 my-4">
-					<form action="" method="post" class="d-block d-flex">
-						<div class="fields d-block d-flex">
-							<div class="textfield-search one-third">
-								<input type="text" class="form-control" placeholder="Ex: food, service, hotel">
-							</div>
-							<div class="select-wrap one-third">
-								<div class="icon"><span class="ion-ios-arrow-down"></span></div>
-								<select name="" id="" class="form-control" placeholder="Keyword search">
-									<option value="">Where</option>
-									<option value="">San Francisco USA</option>
-									<option value="">Berlin Germany</option>
-									<option value="">Lodon United Kingdom</option>
-									<option value="">Paris Italy</option>
-								</select>
-							</div>
-						</div>
-						<input type="submit" class="search-submit btn btn-primary" value="Search">
-					</form>
+				<form action="search_result.php" method="post" class="search-form d-block d-flex">
+            <div class="fields d-block d-flex">
+              <div class="textfield-search one-third">
+                <input type="text" name="keyword" id="keyword" class="form-control" placeholder="Ex: food, service, hotel" value="<?php echo htmlspecialchars($keyword); ?>">
+              </div>
+              <div class="select-wrap one-third">
+                <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                <select name="package_id" id="package_id" class="form-control" placeholder="Select Package">
+                  <option value="">Select Package</option>
+                  <?php
+                    $sql = "SELECT package_id, package_name FROM packages";
+                    $result = $con->query($sql);
+                    while ($row = $result->fetch_assoc()) {
+                        $selected = ($package_id == $row['package_id']) ? 'selected' : '';
+                        echo '<option value="' . $row['package_id'] . '" ' . $selected . '>' . htmlspecialchars($row['package_name']) . '</option>';
+                    }
+                  ?>
+                </select>
+              </div>
+            </div>
+            <input type="submit" class="search-submit btn btn-primary" value="Search">
+          </form>
+
 				</div>
 				<p>Or browse the highlights</p>
 				<p class="browse d-md-flex">
@@ -102,90 +115,91 @@ if (!$ress) {
 			</div>
 		</div>
 	</div>
-</section> 
+</section>
+
 <div class="container mt-4 bg-primary" style="  border-radius: 10px;position: relative;
-    bottom: 100px;" >
+    bottom: 100px;">
 	<h1 class="text-light">Vehicles</h1>
-    <div class="icon-container bg-light p-2" >
-        <i class="bi bi-car-front"></i> <!-- Car -->
-        <i class="bi bi-truck"></i> <!-- Truck -->
-        <i class="bi bi-bus-front"></i> <!-- Bus -->
-        <i class="bi bi-bicycle"></i> <!-- Bicycle -->
-        <i class="bi bi-airplane"></i> <!-- Airplane -->
-    </div>
+	<div class="icon-container bg-light p-2">
+		<i class="bi bi-car-front"></i> <!-- Car -->
+		<i class="bi bi-truck"></i> <!-- Truck -->
+		<i class="bi bi-bus-front"></i> <!-- Bus -->
+		<i class="bi bi-bicycle"></i> <!-- Bicycle -->
+		<i class="bi bi-airplane"></i> <!-- Airplane -->
+	</div>
 </div>
 <style>
 	.icon-container {
-            height: 40px;
-            background: #f8f9fa;
-            display: flex;
-			justify-content: space-between;
-            align-items: center;
-            gap: 20px;
-            border-radius: 10px;
-            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-            padding: 5px 15px;
-            border: 1px solid #ddd;
-        }
+		height: 40px;
+		background: #f8f9fa;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 20px;
+		border-radius: 10px;
+		box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+		padding: 5px 15px;
+		border: 1px solid #ddd;
+	}
 
-        /* Icon Styling */
-        .icon-container i {
-            font-size: 28px;
-            color: #555;
-            transition: all 0.3s ease-in-out;
-            cursor: pointer;
-            padding: 5px;
-            border-radius: 5px;
-        }
+	/* Icon Styling */
+	.icon-container i {
+		font-size: 28px;
+		color: #555;
+		transition: all 0.3s ease-in-out;
+		cursor: pointer;
+		padding: 5px;
+		border-radius: 5px;
+	}
 
-        /* Hover Effect */
-        .icon-container i:hover {
-            background: #007bff;
-            color: white;
-            transform: scale(1.2);
-        }
-    </style>
-	 
+	/* Hover Effect */
+	.icon-container i:hover {
+		background: #007bff;
+		color: white;
+		transform: scale(1.2);
+	}
+</style>
+
 
 <section class="ftco-section ftco-destination">
-    <div class="container">
-        <div class="row justify-content-start mb-5 pb-3">
-            <div class="col-md-7 heading-section ftco-animate">
-                <span class="subheading">Featured</span>
-                <h2 class="mb-4"><strong>Featured</strong> Destination</h2>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="destination-slider owl-carousel ftco-animate">
-                    <?php
-                    if (mysqli_num_rows($ress) > 0) {
-                        while ($rows = mysqli_fetch_assoc($ress)) {
-                    ?>
-                            <div class="item" onclick="window.location.href='destination-details.php?id=<?php echo $rows['id']; ?>'">
-                                <div class="destination">
-                                    <a href="#" class="img d-flex justify-content-center align-items-center" 
-                                       style="background-image: url(<?php echo $rows['image_url']; ?>);">
-                                        <div class="icon d-flex justify-content-center align-items-center">
-                                            <span class="icon-search2"></span>
-                                        </div>
-                                    </a>
-                                    <div class="text p-3">
-                                        <h3><a href="#"><?php echo $rows['name']; ?></a></h3>
-                                        <span class="listing">15 Listing</span>
-                                    </div>
-                                </div>
-                            </div>
-                    <?php
-                        }
-                    } else {
-                        echo "<p>No destinations found!</p>";
-                    }
-                    ?>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="container">
+		<div class="row justify-content-start mb-5 pb-3">
+			<div class="col-md-7 heading-section ftco-animate">
+				<span class="subheading">Featured</span>
+				<h2 class="mb-4"><strong>Featured</strong> Destination</h2>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="destination-slider owl-carousel ftco-animate">
+					<?php
+					if (mysqli_num_rows($ress) > 0) {
+						while ($rows = mysqli_fetch_assoc($ress)) {
+					?>
+							<div class="item" onclick="window.location.href='destination-details.php?id=<?php echo $rows['id']; ?>'">
+								<div class="destination">
+									<a href="#" class="img d-flex justify-content-center align-items-center"
+										style="background-image: url(<?php echo $rows['image_url']; ?>);">
+										<div class="icon d-flex justify-content-center align-items-center">
+											<span class="icon-search2"></span>
+										</div>
+									</a>
+									<div class="text p-3">
+										<h3><a href="#"><?php echo $rows['name']; ?></a></h3>
+										<span class="listing">15 Listing</span>
+									</div>
+								</div>
+							</div>
+					<?php
+						}
+					} else {
+						echo "<p>No destinations found!</p>";
+					}
+					?>
+				</div>
+			</div>
+		</div>
+	</div>
 </section>
 
 <section class="ftco-section bg-light">
