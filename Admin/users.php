@@ -16,7 +16,7 @@ $result = $stmt ->get_result();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel</title>
+    <title>Admin Dashboard</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
@@ -24,6 +24,7 @@ $result = $stmt ->get_result();
 <body>
 
     <div class="container mt-5">
+    
         <h3><i class="fas fa-users"></i> Manage Users</h3>
       <div class="d-flex flex-row"><a href="add_user.php"><button type="btn" class="btn btn-success d-flex-row">Add User</button></a></div>
             <a href="users.php" class="btn btn-secondary">Cancel</a>
@@ -73,6 +74,4 @@ $result = $stmt ->get_result();
             </tbody>
         </table>
     </div>
-
-</body>
-</html>
+    <?php include 'sidebar.php'?>
