@@ -3,8 +3,9 @@ include 'navbar.php';
 include 'connect.php';
 
 // Fetch all restaurants
-$query = "SELECT * FROM restaurants ORDER BY created_at DESC";
-$result = $con->query($query);
+// Fetch Restaurants
+$sql = "SELECT * FROM restaurants";
+$result = $con->query($sql);
 ?>
 <div class="hero-wrap js-fullheight" style="background-image: url('images/bg_3.jpg');">
       <div class="overlay"></div>
@@ -20,59 +21,77 @@ $result = $con->query($query);
 </div>
 
     <style>
-        /* Full Card Hover Effect */
-        .restaurant-card {
-            overflow: hidden;
-            border-radius: 10px;
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-        }
+body {
+    background-color: #f8f9fa;
+}
 
-        /* Hover Effect - Scale up & Add Shadow */
-        .restaurant-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
-        }
+h2 {
+    font-weight: bold;
+    color: #333;
+}
 
-        /* Image Inside the Card */
-        .restaurant-card img {
-            transition: transform 0.3s ease-in-out;
-        }
+.restaurant-card {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+    margin-bottom: 20px;
+}
 
-        /* Image Zooms Slightly on Hover */
-        .restaurant-card:hover img {
-            transform: scale(1.1);
-        }
+.restaurant-card:hover {
+    transform: scale(1.05);
+}
+
+.restaurant-card img {
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-body {
+    background: #fff;
+    padding: 15px;
+}
+
+.card-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.card-text {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.btn-primary {
+    border-radius: 50px;
+    padding: 8px 20px;
+    font-size: 0.9rem;
+}
+
     </style>
 
 
-<section class="container mt-5">
-    <h1 class="text-center mb-4">Restaurant Listings</h1>
-
-    <?php if ($result->num_rows > 0) { ?>
-        <div class="row">
-            <?php while ($row = $result->fetch_assoc()) { ?>
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Top Restaurants</h2>
+    <div class="row">
+        <?php while ($row = $result->fetch_assoc()) { ?>
             <div class="col-md-4">
-                <div class="card mb-4 shadow-sm restaurant-card">
-                    <img src="images/<?php echo htmlspecialchars($row['image']); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($row['name']); ?>" style="height: 200px; object-fit: cover;">
-                    <div class="card-body text-center">
-                        <h5 class="card-title"><?php echo htmlspecialchars($row['name']); ?></h5>
-                        <p class="card-text"><strong>Address:</strong> <?php echo htmlspecialchars($row['address'] . ', ' . $row['city']); ?></p>
-                        <p class="card-text"><strong>Cuisine:</strong> <?php echo htmlspecialchars($row['cuisine_type']); ?></p>
-                        <p class="card-text"><strong>Rating:</strong> <?php echo htmlspecialchars($row['rating']); ?> ⭐</p>
-                        <div class="d-flex justify-content-between">
-                            <a href="restaurant.php?id=<?php echo $row['r_id']; ?>" class="btn btn-outline-primary">View Details</a>
-                            <a href="orders.php?restaurant_id=<?php echo $row['r_id']; ?>" class="btn btn-outline-warning">Order Now</a>
-                        </div>
+                <div class="card restaurant-card">
+                    <img src="images/<?php echo $row['image']; ?>" class="card-img-top" alt="<?php echo $row['name']; ?>">
+                    <div class="card-body">
+                        <h5 class="card-title"><?php echo $row['name']; ?></h5>
+                        <p class="card-text"><strong>Location:</strong> <?php echo $row['city']; ?>, <?php echo $row['state']; ?></p>
+                        <p class="card-text"><strong>Cuisine:</strong> <?php echo $row['cuisine_type']; ?></p>
+                        <p class="card-text"><strong>Rating:</strong> ⭐ <?php echo $row['rating']; ?>/5</p>
+                        <p class="card-text"><strong>Opening Hours:</strong> <?php echo $row['opening_hours']; ?></p>
+                        <a href="restaurant_details.php?r_id=<?php echo $row['r_id']; ?>" class="btn btn-primary">View Restaurant</a>
                     </div>
                 </div>
             </div>
-            <?php } ?>
-        </div>
-    <?php } else { ?>
-        <p class="text-center text-danger">No restaurants available.</p>
-    <?php } ?>
-
-</section>
+        <?php } ?>
+    </div>
+</div>
 
 
 

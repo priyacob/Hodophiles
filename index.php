@@ -35,20 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
               <div class="textfield-search one-third">
                 <input type="text" name="keyword" id="keyword" class="form-control" placeholder="Ex: food, service, hotel" value="<?php echo htmlspecialchars($keyword); ?>">
               </div>
-              <div class="select-wrap one-third">
-                <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                <select name="package_id" id="package_id" class="form-control" placeholder="Select Package">
-                  <option value="">Select Package</option>
-                  <?php
-                    $sql = "SELECT package_id, package_name FROM packages";
-                    $result = $con->query($sql);
-                    while ($row = $result->fetch_assoc()) {
-                        $selected = ($package_id == $row['package_id']) ? 'selected' : '';
-                        echo '<option value="' . $row['package_id'] . '" ' . $selected . '>' . htmlspecialchars($row['package_name']) . '</option>';
-                    }
-                  ?>
-                </select>
-              </div>
+        
             </div>
             <input type="submit" class="search-submit btn btn-primary" value="Search">
           </form>
@@ -117,48 +104,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 	</div>
 </section>
 
-<div class="container mt-4 bg-primary" style="  border-radius: 10px;position: relative;
-    bottom: 100px;">
-	<h1 class="text-light">Vehicles</h1>
-	<div class="icon-container bg-light p-2">
-		<i class="bi bi-car-front"></i> <!-- Car -->
-		<i class="bi bi-truck"></i> <!-- Truck -->
-		<i class="bi bi-bus-front"></i> <!-- Bus -->
-		<i class="bi bi-bicycle"></i> <!-- Bicycle -->
-		<i class="bi bi-airplane"></i> <!-- Airplane -->
-	</div>
-</div>
-<style>
-	.icon-container {
-		height: 40px;
-		background: #f8f9fa;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		gap: 20px;
-		border-radius: 10px;
-		box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-		padding: 5px 15px;
-		border: 1px solid #ddd;
-	}
-
-	/* Icon Styling */
-	.icon-container i {
-		font-size: 28px;
-		color: #555;
-		transition: all 0.3s ease-in-out;
-		cursor: pointer;
-		padding: 5px;
-		border-radius: 5px;
-	}
-
-	/* Hover Effect */
-	.icon-container i:hover {
-		background: #007bff;
-		color: white;
-		transform: scale(1.2);
-	}
-</style>
 
 
 <section class="ftco-section ftco-destination">

@@ -113,59 +113,67 @@ if (isset($_GET['hotel_id'])) {
 					<div class="col-md-12 hotel-single ftco-animate mb-5 mt-4">
 						<h4 class="mb-4">Our Rooms</h4>
 						<div class="row">
-							<?php
-							$sql = "SELECT * FROM room WHERE hotel_id = ?";
-							$stmt = mysqli_prepare($con, $sql);
-							mysqli_stmt_bind_param($stmt, "i", $hotel_id);
-							mysqli_stmt_execute($stmt);
-							$result = mysqli_stmt_get_result($stmt);
+						<?php
+$sql = "SELECT * FROM room WHERE hotel_id = ?";
+$stmt = mysqli_prepare($con, $sql);
+mysqli_stmt_bind_param($stmt, "i", $hotel_id);
+mysqli_stmt_execute($stmt);
+$result = mysqli_stmt_get_result($stmt);
 
-							if ($result->num_rows > 0) {
-								while ($row = $result->fetch_assoc()) { ?>
-									<div class="col-md-4">
-										<div class="destination">
-											<a href="hotel-single.php?room_id=<?php echo $row['room_id']; ?>" class="img img-2"
-												style="background-image: url('<?php echo htmlspecialchars($row['image_url']); ?>');"></a>
-											<div class="text p-3">
-												<div class="d-flex">
-													<div class="one">
-														<h3>
-															<a href="hotel-single.php?room_id=<?php echo $row['room_id']; ?>">
-																<?php echo htmlspecialchars($hotel['hotel_name']); ?>
-															</a>
-														</h3>
-														<p class="rate">
-															<i class="icon-star"></i>
-															<i class="icon-star"></i>
-															<i class="icon-star"></i>
-															<i class="icon-star"></i>
-															<i class="icon-star-o"></i> <span>8 Rating</span>
-														</p>
-													</div>
-													<div class="two">
-														<span
-															class="price per-price">$<?php echo number_format($row['price'], 2); ?><br><small>/night</small></span>
-													</div>
-												</div>
-												<p><?php echo substr(htmlspecialchars($row['description']), 0, 100) . '...'; ?>
-												</p>
-												<hr>
-												<p class="bottom-area d-flex">
-													<span><i class="icon-map-o"></i></span>
-													<span class="ml-auto"><a
-															href="hotel-single.php?room_id=<?php echo $row['room_id']; ?>">Book
-															Now</a></span>
-												</p>
-											</div>
-										</div>
-									</div>
-								<?php }
-							} else {
-								echo "<p>No rooms available.</p>";
-							}
-							mysqli_stmt_close($stmt);
-							mysqli_close($con);
-							?>
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        // Prepare variables for each room
+        $room_id = urlencode($row['room_id']);
+        $image = 'images/' . htmlspecialchars($row['image_url'], ENT_QUOTES, 'UTF-8');
+        ?>
+        <div class="col-md-4">
+            <div class="destination">
+                <a href="hotel-single.php?room_id=<?= $room_id ?>" class="img img-2"
+                   style="background-image: url('<?= $image ?>');"></a>
+                <div class="text p-3">
+                    <div class="d-flex">
+                        <div class="one">
+                            <h3>
+                                <a href="hotel-single.php?room_id=<?= $room_id ?>">
+                                    <?= htmlspecialchars($row['room_name']) ?>
+                                </a>
+                            </h3>
+                            <p class="rate">
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
+                                <i class="icon-star"></i>
+                                <i class="icon-star-o"></i> <span>8 Rating</span>
+                            </p>
+                        </div>
+                        <div class="two">
+                            <span class="price per-price">
+							₹<?= number_format($row['price'], 2) ?><br>
+                                <small>/night</small>
+                            </span>
+                        </div>
+                    </div>
+                    <p><?= substr(htmlspecialchars($row['description']), 0, 100) . '...'; ?></p>
+                    <hr>
+                    <p class="bottom-area d-flex">
+                        <span><i class="icon-map-o"></i></span>
+                        <span class="ml-auto">
+                            <a href="hotel-single.php?room_id=<?= $room_id ?>">Book Now</a>
+                        </span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <?php
+    }
+} else {
+    echo "<p>No rooms available.</p>";
+}
+mysqli_stmt_close($stmt);
+mysqli_close($con);
+?>
+
+
 						</div>
 
 					</div>
