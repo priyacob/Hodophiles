@@ -3,17 +3,23 @@ include 'navbar.php';
 include 'connect.php';
 
 // Default SQL query to fetch all hotels
-$sql = "SELECT * FROM hotel";
+$sql = "SELECT * FROM hotel WHERE 1";
 
-// Handle the price filter
+// Handle the filters
+$filters = [];
+
 if (isset($_POST['min_price']) && isset($_POST['max_price'])) {
     $min_price = (int)$_POST['min_price'];
     $max_price = (int)$_POST['max_price'];
 
-    // Validate the price range
     if ($min_price >= 0 && $max_price > $min_price) {
-        $sql = "SELECT * FROM hotel WHERE price BETWEEN $min_price AND $max_price";
+        $filters[] = "price BETWEEN $min_price AND $max_price";
     }
+}
+
+// Append filters to the SQL query if any
+if (!empty($filters)) {
+    $sql .= " AND " . implode(" AND ", $filters);
 }
 
 $res = mysqli_query($con, $sql);
@@ -42,9 +48,6 @@ $res = mysqli_query($con, $sql);
                     <form action="" method="POST">
                         <div class="fields">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Destination, City">
-                            </div>
-                            <div class="form-group">
                                 <label>Min Price</label>
                                 <input type="number" name="min_price" class="form-control" value="1000" min="0">
                             </div>
@@ -62,77 +65,48 @@ $res = mysqli_query($con, $sql);
 
             <div class="col-lg-9">
                 <div class="row">
-                <?php
-// Database Connection
-$host = "localhost"; // Change if needed
-$user = "root"; // Your database username
-$password = ""; // Your database password
-$database = "soundarja"; // Your database name
-
-$conn = mysqli_connect($host, $user, $password, $database);
-
-// Check Connection
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
-
-// Fetch Data from Database
-$sql = "SELECT * FROM hotel";
-$res = mysqli_query($conn, $sql);
-?>
-
-<div class="row">
-    <?php while ($row = mysqli_fetch_assoc($res)) { ?>
-        <div class="col-md-4 ftco-animate">
-            <div class="destination">
-                <a href="hotel-single.php?id=<?php echo $row['hotel_id']; ?>" 
-                   class="img img-2 d-flex justify-content-center align-items-center"
-                   style="background-image: url('<?php echo $row['image_url']; ?>');">
-                    <div class="icon d-flex justify-content-center align-items-center">
-                        <span class="icon-search2"></span>
-                    </div>
-                </a>
-                <div class="text p-3">
-                    <div class="d-flex">
-                        <div class="one">
-                            <h3><a href="hotel-single.php?id=<?php echo $row['hotel_id']; ?>">
-                                <?php echo $row['hotel_name']; ?>
-                            </a></h3>
-                            <p class="rate">
-                                <i class="icon-star"></i>
-                                <i class="icon-star"></i>
-                                <i class="icon-star"></i>
-                                <i class="icon-star"></i>
-                                <i class="icon-star-o"></i>
-                                <span>8 Rating</span>
-                            </p>
+                    <?php while ($row = mysqli_fetch_assoc($res)) { ?>
+                        <div class="col-md-4 ftco-animate">
+                            <div class="destination">
+                                <a href="hotel-single.php?hotel_id=<?php echo $row['hotel_id']; ?>" 
+                                   class="img img-2 d-flex justify-content-center align-items-center"
+                                   style="background-image: url('<?php echo $row['image_url']; ?>');">
+                                    <div class="icon d-flex justify-content-center align-items-center">
+                                        <span class="icon-search2"></span>
+                                    </div>
+                                </a>
+                                <div class="text p-3">
+                                    <div class="d-flex">
+                                        <div class="one">
+                                            <h3><a href="hotel-single.php?id=<?php echo $row['hotel_id']; ?>">
+                                                <?php echo $row['hotel_name']; ?>
+                                            </a></h3>
+                                            <p class="rate">
+                                                <i class="icon-star"></i>
+                                                <i class="icon-star"></i>
+                                                <i class="icon-star"></i>
+                                                <i class="icon-star"></i>
+                                                <i class="icon-star-o"></i>
+                                                <span>8 Rating</span>
+                                            </p>
+                                        </div>
+                                        <div class="two">
+                                            <span class="price per-price">₹<?php echo $row['price']; ?><br><small>/night</small></span>
+                                        </div>
+                                    </div>
+                                    <p><?php echo $row['description']; ?></p>
+                                    
+                                </div>
+                            </div>
                         </div>
-                        <div class="two">
-                            <span class="price per-price">₹<?php echo $row['price']; ?><br><small>/night</small></span>
-                        </div>
-                    </div>
-                    <p><?php echo $row['description']; ?></p>
-                    <hr>
-                    <p class="bottom-area d-flex">
-                        <span><i class="icon-map-o"></i> <?php echo $row['place']; ?></span>
-                        <span class="ml-auto"><a href="booking.php?hotel_id=<?php echo $row['hotel_id']; ?>">Book Now</a></span>
-                    </p>
-                </div>
-            </div>
-        </div>
-    <?php } ?>
-</div>
-
-<?php
-// Close connection
-mysqli_close($conn);
-?>
-
+                    <?php } ?>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+
 <!-- .section -->
 
 
