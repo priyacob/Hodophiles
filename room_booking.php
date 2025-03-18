@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $guests = intval($_POST['guests']);
     $total_price = $room['price'] * ((strtotime($check_out) - strtotime($check_in)) / 86400);
 
-    $sql = "INSERT INTO room_booking (user_id, room_id, hotel_id, check_in, check_out, guests, total_price) 
+    $sql = "INSERT INTO room_booking (u_id, room_id, hotel_id, check_in, check_out, guests, total_price) 
             VALUES (?, ?, ?, ?, ?, ?, ?)";
     $stmt = mysqli_prepare($con, $sql);
     mysqli_stmt_bind_param($stmt, "iiissid", $user_id, $room_id, $hotel_id, $check_in, $check_out, $guests, $total_price);
