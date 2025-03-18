@@ -126,7 +126,7 @@ if ($result->num_rows > 0) {
                     <p class="bottom-area d-flex">
                         <span><i class="icon-map-o"></i></span>
                         <span class="ml-auto">
-                            <a href="hotel-single.php?room_id=<?= $room_id ?>">Book Now</a>
+                            <a href="room_booking.php?room_id=<?= $room_id ?>">Book Now</a>
                         </span>
                     </p>
                 </div>

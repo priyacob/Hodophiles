@@ -95,11 +95,7 @@ $res = mysqli_query($con, $sql);
                                         </div>
                                     </div>
                                     <p><?php echo $row['description']; ?></p>
-                                    <hr>
-                                    <p class="bottom-area d-flex">
-                                        <span><i class="icon-map-o"></i> <?php echo $row['place']; ?></span>
-                                        <span class="ml-auto"><a href="booking.php?hotel_id=<?php echo $row['hotel_id']; ?>">Book Now</a></span>
-                                    </p>
+                                    
                                 </div>
                             </div>
                         </div>
