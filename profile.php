@@ -179,6 +179,12 @@ $result = $stmt->get_result();
     <div class="tab-content" id="info">
       <h3>Additional Information</h3>
       <p>Additional information coming soon.</p>
+
+
+
+
+
+      
     </div>
   </div>
   <script>

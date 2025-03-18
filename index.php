@@ -116,7 +116,7 @@ if (!$result_destinations || !$result_packages || !$result_hotels || !$result_ro
             ?>
                     <div class="col-sm col-md-6 col-lg ftco-animate">
                         <div class="destination">
-                            <a href="hotel-details.php?id=<?php echo $row['hotel_id']; ?>" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(<?php echo $row['image_url']; ?>);">
+                            <a href="hotel-single.php?hotel_id=<?php echo $row['hotel_id']; ?>" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(<?php echo $row['image_url']; ?>);">
                                 <div class="icon d-flex justify-content-center align-items-center">
                                     <span class="icon-search2"></span>
                                 </div>
@@ -124,7 +124,7 @@ if (!$result_destinations || !$result_packages || !$result_hotels || !$result_ro
                             <div class="text p-3">
                                 <div class="d-flex">
                                     <div class="one">
-                                        <h3><a href="hotel-details.php?id=<?php echo $row['hotel_id']; ?>"><?php echo $row['hotel_name']; ?></a></h3>
+                                        <h3><a href="hotel-single.php?hotel_id=<?php echo $row['hotel_id']; ?>"><?php echo $row['hotel_name']; ?></a></h3>
                                         <p class="rate">
                                             <i class="icon-star"></i>
                                             <i class="icon-star"></i>
@@ -142,7 +142,7 @@ if (!$result_destinations || !$result_packages || !$result_hotels || !$result_ro
                                 <hr>
                                 <p class="bottom-area d-flex">
                                     <span><i class="icon-map-o"></i> <?php echo $row['place']; ?></span>
-                                    <span class="ml-auto"><a href="hotel-details.php?id=<?php echo $row['hotel_id']; ?>">Book Now</a></span>
+                                    <span class="ml-auto"><a href="hotel-single.php?hotel_id=<?php echo $row['hotel_id']; ?>">Book Now</a></span>
                                 </p>
                             </div>
                         </div>
@@ -175,13 +175,13 @@ if (!$result_destinations || !$result_packages || !$result_hotels || !$result_ro
             ?>
                     <div class="col-md-6 col-lg-3 ftco-animate">
                         <div class="destination">
-                            <a href="restaurant_details.php?id=<?php echo $row['r_id']; ?>" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(images/<?php echo $row['image']; ?>);">
+                            <a href="restaurant_details.php?r_id=<?php echo $row['r_id']; ?>" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(images/<?php echo $row['image']; ?>);">
                                 <div class="icon d-flex justify-content-center align-items-center">
                                     <span class="icon-search2"></span>
                                 </div>
                             </a>
                             <div class="text p-3">
-                                <h3><a href="restaurant_details.php?id=<?php echo $row['r_id']; ?>"><?php echo $row['name']; ?></a></h3>
+                                <h3><a href="restaurant_details.php?r_id=<?php echo $row['r_id']; ?>"><?php echo $row['name']; ?></a></h3>
                                 <p class="rate">
                                     <i class="icon-star"></i>
                                     <i class="icon-star"></i>
@@ -194,16 +194,14 @@ if (!$result_destinations || !$result_packages || !$result_hotels || !$result_ro
                                 <hr>
                                 <p class="bottom-area d-flex">
                                     <span><i class="icon-map-o"></i> <?php echo $row['city']; ?></span>
-                                    <span class="ml-auto"><a href="restaurant_details.php?id=<?php echo $row['r_id']; ?>">Discover</a></span>
+                                    <span class="ml-auto"><a href="restaurant_details.php?r_id=<?php echo $row['r_id']; ?>">Discover</a></span>
                                 </p>
                             </div>
                         </div>
                     </div>
             <?php
                 }
-            } else {
-                echo "<p>No restaurants found!</p>";
-            }
+            } 
             ?>
         </div>
     </div>
