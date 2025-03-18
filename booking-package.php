@@ -33,14 +33,14 @@ if (isset($_GET['id'])) {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <style>
-        /* General Styles */
+        / General Styles /
         body {
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(to right, #f8f9fa, #e3e6f3);
             color: #333;
         }
 
-        /* Header */
+        / Header /
         header {
             background: linear-gradient(to right, #4facfe, #00f2fe);
             padding: 20px 0;
@@ -51,14 +51,14 @@ if (isset($_GET['id'])) {
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
-        /* Hero Slider */
+        / Hero Slider /
         .carousel img {
             height: 500px;
             object-fit: cover;
             border-radius: 10px;
         }
 
-        /* Package Details */
+        / Package Details /
         .package-details {
             padding: 20px;
             background: white;
@@ -66,7 +66,7 @@ if (isset($_GET['id'])) {
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
         }
 
-        /* Booking Form */
+        / Booking Form /
         .booking-form {
             background: white;
             padding: 20px;
@@ -103,7 +103,7 @@ if (isset($_GET['id'])) {
             transform: scale(1.05);
         }
 
-        /* Footer */
+        / Footer /
         footer {
             background: #343a40;
             color: white;
