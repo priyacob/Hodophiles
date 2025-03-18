@@ -6,6 +6,9 @@ include 'connect.php';
 // Fetch Restaurants
 $sql = "SELECT * FROM restaurants";
 $result = $con->query($sql);
+// Fetch Restaurants
+$sql = "SELECT * FROM restaurants";
+$result = $con->query($sql);
 ?>
 <div class="hero-wrap js-fullheight" style="background-image: url('images/bg_3.jpg');">
       <div class="overlay"></div>
@@ -37,9 +40,55 @@ h2 {
     transition: transform 0.3s ease-in-out;
     margin-bottom: 20px;
 }
+body {
+    background-color: #f8f9fa;
+}
+
+h2 {
+    font-weight: bold;
+    color: #333;
+}
+
+.restaurant-card {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+    margin-bottom: 20px;
+}
 
 .restaurant-card:hover {
     transform: scale(1.05);
+}
+.restaurant-card:hover {
+    transform: scale(1.05);
+}
+
+.restaurant-card img {
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-body {
+    background: #fff;
+    padding: 15px;
+}
+
+.card-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.card-text {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.btn-primary {
+    border-radius: 50px;
+    padding: 8px 20px;
+    font-size: 0.9rem;
 }
 
 .restaurant-card img {
@@ -76,6 +125,10 @@ h2 {
     <h2 class="text-center mb-4">Top Restaurants</h2>
     <div class="row">
         <?php while ($row = $result->fetch_assoc()) { ?>
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Top Restaurants</h2>
+    <div class="row">
+        <?php while ($row = $result->fetch_assoc()) { ?>
             <div class="col-md-4">
                 <div class="card restaurant-card">
                     <img src="images/<?php echo $row['image']; ?>" class="card-img-top" alt="<?php echo $row['name']; ?>">
@@ -89,6 +142,9 @@ h2 {
                     </div>
                 </div>
             </div>
+        <?php } ?>
+    </div>
+</div>
         <?php } ?>
     </div>
 </div>

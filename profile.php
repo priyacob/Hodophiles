@@ -1,33 +1,34 @@
 <?php 
 include 'navbar.php';
-include('connect.php');
+include 'connect.php';
 
-if (isset($_SESSION['uid'])) {
-    $u_id = $_SESSION['uid'];
-
-    $sql = "SELECT * FROM users WHERE u_id = ?";
-    $stmt = $con->prepare($sql);
-    $stmt->bind_param("i", $u_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $user = $result->fetch_assoc();
-
-    $profile_pic = !empty($user['image']) ? $user['image'] : 'images/default.jpg';
-} else {
+// Check if user is logged in
+if (!isset($_SESSION['uid'])) {
     header("Location: login.php");
     exit();
 }
 
+$u_id = $_SESSION['uid'];
 
-// Inner join booking_vehicle with vehicles
-$sql = "SELECT bv.*, v.image, v.name 
-        FROM booking_vehicle bv 
-        INNER JOIN vehicles v ON bv.v_id = v.v_id 
-        WHERE bv.u_id = ?";
+// Fetch user profile details
+$sql = "SELECT * FROM users WHERE u_id = ?";
 $stmt = $con->prepare($sql);
-$stmt->bind_param("s", $u_id);
+$stmt->bind_param("i", $u_id);
 $stmt->execute();
 $result = $stmt->get_result();
+$user = $result->fetch_assoc();
+
+$profile_pic = !empty($user['image']) ? $user['image'] : 'images/default.jpg';
+
+// Fetch user bookings
+$sql = "SELECT pb.*, d.name AS destination_name, d.image_url 
+        FROM p_bookings pb
+        INNER JOIN destinations d ON pb.destination_id = d.id 
+        WHERE pb.user_id = ?";
+$stmt = $con->prepare($sql);
+$stmt->bind_param("i", $u_id);
+$stmt->execute();
+$bookings = $stmt->get_result();
 ?>
 
   <!-- Google Fonts -->
@@ -178,15 +179,42 @@ $result = $stmt->get_result();
     <!-- Tab Content: Additional Info -->
     <div class="tab-content" id="info">
       <h3>Additional Information</h3>
-      <p>Additional information coming soon.</p>
-
-
-
-
-
-      
+      <h2 class="text-center">My Bookings</h2> 
+        <?php if ($bookings->num_rows > 0) { ?>
+            <div class="row">
+                <?php while ($row = $bookings->fetch_assoc()) { ?>
+                    <div class="col-md-6">
+                        <div class="card mb-3 p-3 shadow-sm">
+                            <div class="d-flex align-items-center">
+                                <img src="<?php echo $row['image_url']; ?>" alt="Destination" class="img-fluid rounded" style="width: 100px; height: 100px;">
+                                <div class="ms-3">
+                                    <h5 class="fw-bold"><?php echo $row['destination_name']; ?></h5>
+                                    <p class="mb-1"><i class="bi bi-calendar-event"></i> Travel Date: <?php echo $row['travel_date']; ?></p>
+                                    <p class="mb-1"><i class="bi bi-people"></i> Guests: <?php echo $row['guests']; ?></p>
+                                    <p class="mb-1"><i class="bi bi-credit-card"></i> Payment: <?php echo ucfirst($row['payment_method']); ?></p>
+                                    <p class="mb-1"><strong>Total Price:</strong> ₹<?php echo number_format($row['total_price']); ?></p>
+                                    <p class="text-muted">Booked on: <?php echo date("d M, Y", strtotime($row['booking_date'])); ?></p>
+                                </div>
+                            </div>
+                            <div class="mt-2">
+                                <button class="btn btn-danger btn-sm" onclick="cancelBooking(<?php echo $row['id']; ?>)">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
+        <?php } else { ?>
+            <p class="text-center">No bookings found.</p>
+        <?php } ?> 
     </div>
   </div>
+  <script>
+function cancelBooking(bookingId) {
+    if (confirm("Are you sure you want to cancel this booking?")) {
+        window.location.href = "cancel_booking.php?id=" + bookingId;
+    }
+}
+</script>
   <script>
   document.addEventListener("DOMContentLoaded", function() {
     // Tab switching functionality
