@@ -99,63 +99,6 @@ if (!$result_destinations || !$result_packages || !$result_hotels || !$result_ro
     </div>
 </section>
 
-<!-- Top Tour Packages -->
-<section class="ftco-section bg-light">
-    <div class="container">
-        <div class="row justify-content-start mb-5 pb-3">
-            <div class="col-md-7 heading-section ftco-animate">
-                <span class="subheading">Special Offers</span>
-                <h2 class="mb-4"><strong>Top</strong> Tour Packages</h2>
-            </div>
-        </div>
-        <div class="row">
-            <?php
-            if (mysqli_num_rows($result_packages) > 0) {
-                while ($row = mysqli_fetch_assoc($result_packages)) {
-            ?>
-                    <div class="col-sm col-md-6 col-lg ftco-animate">
-                        <div class="destination">
-                            <a href="package-details.php?id=<?php echo $row['package_id']; ?>" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(images/hotel-1.jpg);">
-                                <div class="icon d-flex justify-content-center align-items-center">
-                                    <span class="icon-search2"></span>
-                                </div>
-                            </a>
-                            <div class="text p-3">
-                                <div class="d-flex">
-                                    <div class="one">
-                                        <h3><a href="package-details.php?id=<?php echo $row['package_id']; ?>"><?php echo $row['package_name']; ?></a></h3>
-                                        <p class="rate">
-                                            <i class="icon-star"></i>
-                                            <i class="icon-star"></i>
-                                            <i class="icon-star"></i>
-                                            <i class="icon-star"></i>
-                                            <i class="icon-star-o"></i>
-                                            <span>8 Rating</span>
-                                        </p>
-                                    </div>
-                                    <div class="two">
-                                        <span class="price per-price"><?php echo $row['price']; ?><br><small>/night</small></span>
-                                    </div>
-                                </div>
-                                <p><?php echo $row['description']; ?></p>
-                                <hr>
-                                <p class="bottom-area d-flex">
-                                    <span><i class="icon-map-o"></i> Miami, Fl</span>
-                                    <span class="ml-auto"><a href="package-details.php?id=<?php echo $row['package_id']; ?>">Book Now</a></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-            <?php
-                }
-            } else {
-                echo "<p>No packages found!</p>";
-            }
-            ?>
-        </div>
-    </div>
-</section>
-
 <!-- Popular Hotels & Rooms -->
 <section class="ftco-section">
     <div class="container">
@@ -210,48 +153,7 @@ if (!$result_destinations || !$result_packages || !$result_hotels || !$result_ro
                 echo "<p>No hotels found!</p>";
             }
 
-            // Fetch and display rooms
-            if (mysqli_num_rows($result_rooms) > 0) {
-                while ($row = mysqli_fetch_assoc($result_rooms)) {
-            ?>
-                    <div class="col-sm col-md-6 col-lg ftco-animate">
-                        <div class="destination">
-                            <a href="room-details.php?id=<?php echo $row['room_id']; ?>" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(<?php echo $row['image_url']; ?>);">
-                                <div class="icon d-flex justify-content-center align-items-center">
-                                    <span class="icon-search2"></span>
-                                </div>
-                            </a>
-                            <div class="text p-3">
-                                <div class="d-flex">
-                                    <div class="one">
-                                        <h3><a href="room-details.php?id=<?php echo $row['room_id']; ?>"><?php echo $row['room_name']; ?></a></h3>
-                                        <p class="rate">
-                                            <i class="icon-star"></i>
-                                            <i class="icon-star"></i>
-                                            <i class="icon-star"></i>
-                                            <i class="icon-star"></i>
-                                            <i class="icon-star-o"></i>
-                                            <span>8 Rating</span>
-                                        </p>
-                                    </div>
-                                    <div class="two">
-                                        <span class="price per-price"><?php echo $row['price']; ?><br><small>/night</small></span>
-                                    </div>
-                                </div>
-                                <p><?php echo $row['description']; ?></p>
-                                <hr>
-                                <p class="bottom-area d-flex">
-                                    <span><i class="icon-map-o"></i> <?php echo $row['hotel_id']; ?></span>
-                                    <span class="ml-auto"><a href="room-details.php?id=<?php echo $row['room_id']; ?>">Book Now</a></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-            <?php
-                }
-            } else {
-                echo "<p>No rooms found!</p>";
-            }
+            
             ?>
         </div>
     </div>
@@ -273,7 +175,7 @@ if (!$result_destinations || !$result_packages || !$result_hotels || !$result_ro
             ?>
                     <div class="col-md-6 col-lg-3 ftco-animate">
                         <div class="destination">
-                            <a href="restaurant_details.php?id=<?php echo $row['r_id']; ?>" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(<?php echo $row['image']; ?>);">
+                            <a href="restaurant_details.php?id=<?php echo $row['r_id']; ?>" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(images/<?php echo $row['image']; ?>);">
                                 <div class="icon d-flex justify-content-center align-items-center">
                                     <span class="icon-search2"></span>
                                 </div>
