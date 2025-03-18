@@ -524,11 +524,21 @@ $con->close();
     
     <!-- Right Sidebar -->
     <div class="right-sidebar">
-        <div class="price-box">
-            <p>Starting from <del>₹<?php echo $destination['old_price']; ?></del></p>
-            <p class="price">₹<?php echo $destination['price']; ?> Per Person</p>
-            <button>ENQUIRE NOW</button>
-        </div>
+    <div class="price-box">
+    <p>Starting from <del>₹<?php echo $destination['old_price']; ?></del></p>
+    <p class="price">₹<?php echo $destination['price']; ?> Per Person</p>
+    <button onclick="redirectToBooking(<?php echo $destination['id']; ?>)">BOOK NOW</button>
+
+<script>
+function redirectToBooking(destinationId) {
+    window.location.href = "booking-package.php?id=" + destinationId;
+}
+</script>
+
+</div>
+
+
+
 
         <div class="package-details card p-4 shadow-sm">
     <h5 class="mb-3 fw-bold">Package Details</h5>

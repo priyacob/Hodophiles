@@ -218,13 +218,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <!-- Alternative Modal Styling -->
 <style>
-  /* Modal Container */
+  / Modal Container /
   .alt-modal {
     border-radius: 8px;
     border: 1px solid #e0e0e0;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }
-  /* Header */
+  / Header /
   .alt-modal-header {
     background-color: #f5f5f5;
     border-bottom: 1px solid #e0e0e0;
@@ -234,7 +234,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     font-weight: 600;
     color: #333;
   }
-  /* Body */
+  / Body /
   .alt-modal-body {
     background-color: #fff;
     padding: 20px;
@@ -244,7 +244,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   .alt-modal-body p {
     margin-bottom: 10px;
   }
-  /* Footer */
+  / Footer /
   .alt-modal-footer {
     background-color: #f5f5f5;
     border-top: 1px solid #e0e0e0;
@@ -252,7 +252,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     display: flex;
     justify-content: center;
   }
-  /* Button */
+  / Button /
   .alt-btn {
     font-size: 1rem;
     border-radius: 4px;
