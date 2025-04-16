@@ -98,7 +98,7 @@
 					$servername = "localhost";
 					$username = "root";
 					$password = "";
-					$database = "soundarja"; // Your database name
+					$database = "tourism"; // Your database name
 
 					$conn = new mysqli($servername, $username, $password, $database);
 
